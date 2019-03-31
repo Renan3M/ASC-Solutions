@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Classes</title>
+</head>
+<body>
+    <div ng-class="container-fluid" ng-app="app" ng-controller="ClassesCtrl">
+        <div class="row">
+            <nav style="margin: 10px 10px 10px 0px">
+                <button type="button" class="btn btn-primary" ng-click="showTable(0)">Mostrar turma 1</button>
+                <button type="button" class="btn btn-primary" ng-click="showTable(1)">Mostrar turma 2</button>
+                <button type="button" class="btn btn-primary" ng-click="showTable(2)">Mostrar turma 3</button>
+                <button type="button" class="btn btn-danger" ng-click="shuffleClasses()">Mudar configuração</button>
+                <div style="display:inline-block; clear:both; float:right;">
+                    @using (Html.BeginForm("Index", "Exams"))
+                    {
+                        <button type="submit" ng-click="save()" class="btn btn-success">Iniciar Semestre Letivo</button>
+                    }
+                </div>
+            </nav>
+            <div class="col" ng-show="show[0]">
+                <table class="table col-sm">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="student in class1">
+                            <td>{{student.Name}}</td>
+                            <td>{{student.Cpf}}</td>
+                            <td>{{student.Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col" ng-show="show[1]">
+                <table class="table col">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="student in class2">
+                            <td>{{student.Name}}</td>
+                            <td>{{student.Cpf}}</td>
+                            <td>{{student.Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col" ng-show="show[2]">
+                <table class="table col">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="student in class3">
+                            <td>{{student.Name}}</td>
+                            <td>{{student.Cpf}}</td>
+                            <td>{{student.Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

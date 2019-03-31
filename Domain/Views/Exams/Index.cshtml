@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Exams</title>
+</head>
+<body>
+    <div ng-class="container" ng-app="app" ng-controller="ExamsCtrl">
+        <button type="button" class="btn btn-primary" style="margin: 10px; align-content:center" ng-click="finishSchoolYear()">Realizar todas as provas</button>
+        <hr />
+        <table class="table table-striped" ng-show="data.grades">
+            <thead>
+                <tr>
+                    <th width="21%" align="justify">Nome</th>
+                    <th width="13%">Nota da primeira prova</th>
+                    <th width="13%">Nota da segunda prova</th>
+                    <th width="13%">Nota da terceira prova</th>
+                    <th width="10%">Nota da recuperação</th>
+                    <th width="10%">Nota final</th>
+                    <th width="10%">Aprovado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in data.grades">
+                    <td>{{x.studentName}}</td>
+                    <td>{{x.firstGrade}}</td>
+                    <td>{{x.secondGrade}}</td>
+                    <td>{{x.thirdGrade}}</td>
+                    <td>{{x.recGrade}}</td>
+                    <td>{{x.finalGrade}}</td>
+                    <td>{{x.approved ? "Sim" : "Não"}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{championsString}}
+    </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+﻿angular.module('app', ['Domain.ClassesController', 'Domain.ExamsController', 'angularUtils.directives.dirPagination']);
