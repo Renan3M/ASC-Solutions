@@ -173,8 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\controllers\ClassesCtrl.js" />
-    <Content Include="app\controllers\ExamsCtrl.js" />
+    <Content Include="app\components\classes\ClassesCtrl.js" />
+    <Content Include="app\components\classes\ClassesService.js" />
+    <Content Include="app\components\exams\ExamsCtrl.js" />
+    <Content Include="app\components\exams\ExamsService.js" />
+    <Content Include="app\helpers\app.constants.js" />
+    <Content Include="app\helpers\service.factory.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

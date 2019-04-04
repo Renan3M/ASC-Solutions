@@ -18,7 +18,7 @@ namespace Domain.Controllers
             return View();
         }
 
-        public async Task<ActionResult> UpdateExams(List<Models.Exam> exams)
+        public ActionResult Update(List<Models.Exam> exams)
         {
             var repository = new ExamRepository();
             return Json(repository.UpdateExams(exams), JsonRequestBehavior.AllowGet);

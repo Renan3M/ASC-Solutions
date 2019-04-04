@@ -17,7 +17,8 @@ namespace Domain.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetStudents()
+ 
+        public ActionResult GetStudents()
         {
             var repository = new StudentRepository();
             

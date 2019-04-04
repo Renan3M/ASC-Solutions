@@ -26,8 +26,9 @@ namespace Domain
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angularApp").IncludeDirectory(
-                        "~/app", "*.js", true));
+            bundles.Add(new ScriptBundle("~/bundles/angularApp")
+                .Include("~/app/app.js") // If not it would complain that module doesn't exist etc etc.. this way is garanted app.js is first executed
+                .IncludeDirectory( "~/app", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/dirPagination").Include(
                         "~/Scripts/dirPagination.js"));
