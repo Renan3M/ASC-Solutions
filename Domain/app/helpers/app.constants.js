@@ -13,7 +13,8 @@
                 delete: '/Classes/{id}',
                 get: '/Classes/GetStudents', 
                 getById: '/Classes/{id}',
-                save: '/Classes/{id}'
+                save: '/Classes/{id}',
+                update: '/Classes/UpdateClasses'
             },
             exams: {
                 delete: '/Exams/{id}',

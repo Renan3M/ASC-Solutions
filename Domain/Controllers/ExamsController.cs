@@ -21,7 +21,8 @@ namespace Domain.Controllers
         public ActionResult Update(List<Models.Exam> exams)
         {
             var repository = new ExamRepository();
-            return Json(repository.UpdateExams(exams), JsonRequestBehavior.AllowGet);
+
+            return Json(repository.SetGrades(exams), JsonRequestBehavior.AllowGet);
         }
     }
 }

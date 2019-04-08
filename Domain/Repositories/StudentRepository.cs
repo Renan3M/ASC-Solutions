@@ -12,24 +12,36 @@ namespace Domain.Repositories
 {
     public class StudentRepository
     {
-
-
-        public List<Student> GetStudents()
-        {
-            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal()))
-            { 
-                var output = connection.Query<Student>($"select * from Student", new DynamicParameters()).ToList();
-                return output;
-            }
-        }
-
-        public int UpdateClasses(List<Student> list)
-        {
-            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal()))
+            private List<Student> _students;
+            public List<Student> students
             {
-                var output = connection.Execute("update Student set class = @class where Id = @id", list);
-                return output;
+                get
+                {
+                    if (this._students == null)
+                    {
+                        this._students = DB.DBAccess.GetStudents();
+                    }
+                    return this._students;
+                }
+                set
+                {
+                    if (value != null || value?.Count != 0)
+                    {
+                        this._students = value;
+                        DB.DBAccess.UpdateClasses(value);
+                    }
+                }
             }
-        }
+
+            public List<Student> GetStudents()
+            {
+                return this.students;
+            }
+
+            public int SetStudents(List<Student> newStudents)
+            {
+                this.students = newStudents;
+                return 0;
+            }
     }
 }

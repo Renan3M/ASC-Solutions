@@ -25,10 +25,10 @@ namespace Domain.Controllers
             return Json(repository.GetStudents(), JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> UpdateClasses(List<Models.Student> students)
+        public ActionResult UpdateClasses(List<Models.Student> students)
         {
            var repository = new StudentRepository();
-           return Json(repository.UpdateClasses(students), JsonRequestBehavior.AllowGet);
+           return Json(repository.SetStudents(students), JsonRequestBehavior.AllowGet);
         }
     }
 }

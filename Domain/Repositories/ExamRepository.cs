@@ -7,40 +7,37 @@ using Dapper;
 using System.Data;
 using Domain.Models;
 using System.Data.SQLite;
+using System.ComponentModel;
 
 namespace Domain.Repositories
 {
     public class ExamRepository
     {
-
-
-        public List<Exam> GetGrades()
-        {
-            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal()))
-            {
-                var output = connection.Query<Exam>($"select * from Grades", new DynamicParameters()).ToList();
-                return output;
+        private List<Exam> _grades;
+        public List<Exam> grades {
+            get {
+                if (this._grades == null)
+                {
+                    this._grades = DB.DBAccess.GetGrades();
+                }
+                return this._grades;
             }
+            set{
+                if (value != null || value?.Count != 0)
+                {
+                    this._grades = value;
+                    DB.DBAccess.UpdateExams(value);
+                }
+            }}
+
+        public List<Exam> GetGrades() {
+            return this.grades;
         }
 
-        public int UpdateExams(List<Exam> list)
+        public int SetGrades(List<Exam> newGrades)
         {
-            using (IDbConnection connection = new SQLiteConnection(Helper.CnnVal()))
-            {
-               // var output = connection.Execute("INSERT INTO Grades(firstGrade, secondGrade, thirdGrade, recGrade, finalGrade, studentId, studentName) VALUES(@firstGrade, @secondGrade, @thirdGrade, @recGrade, @finalGrade, @studentId, @studentName)",list);
-                
-                var output = connection.Execute($"update Grades set " +
-                                                $"firstGrade = @firstGrade, " +
-                                                $"secondGrade = @secondGrade, " +
-                                                $"thirdGrade = @thirdGrade, " +
-                                                $"recGrade = @recGrade, " +
-                                                $"finalGrade = @finalGrade, " +
-                                                $"studentId = @studentId, " +
-                                                $"studentName = @studentName  " +
-                                                $"where Id = @id", list);
-                                                                 
-                return output;
-            }
+            this.grades = newGrades;
+            return 1;
         }
     }
 }

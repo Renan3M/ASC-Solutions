@@ -6,7 +6,6 @@
         service.get().then(function (results) {
             $scope.students = results;
             $scope.shuffleClasses();
-
         });               
        
     $scope.shuffleClasses = function () {
@@ -23,29 +22,17 @@
     function createClasses(students) {
         const classSize = 20;
 
-        $scope.class1 = []; $scope.class2 = []; $scope.class3 = [];
-
-        for (i = 0; i < students.length; i++) {
-            if (i < classSize) {
-                students[i].Class = 1;
-                $scope.class1.push(students[i]);
-            }
-            else if (classSize <= i && i < 40) {
-                students[i].Class = 2;
-                $scope.class2.push(students[i]);
-            }
-            else {
-                students[i].Class = 3;
-                $scope.class3.push(students[i]);
-            }
-        }
+        $scope.class1 = students.slice(classSize * 0, classSize * 1);
+        $scope.class2 = students.slice(classSize * 1, classSize * 2);
+        $scope.class3 = students.slice(classSize * 2, classSize * 3);
     }
+
     $scope.showTable = function (tableNum) {
         $scope.show = [false, false, false];
         $scope.show[tableNum] = true;
     }
 
     $scope.save = function () {
-        service.save();
+        service.update($scope.students);
     }
 }]);
